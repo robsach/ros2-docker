@@ -32,7 +32,7 @@ stop() {
 
 shell() {
     echo "Launching the ROS 2 environment, type 'exit' to leave once you're done."
-    docker exec -it --detach-keys="ctrl-b,ctrl-a" ros2-docker /bin/bash
+    docker exec -it --detach-keys="ctrl-b,d" ros2-docker /bin/bash
 }
 
 system() {
