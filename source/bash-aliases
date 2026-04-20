@@ -10,4 +10,6 @@ alias tb3_rviz="ros2 launch tuos_simulations rviz.launch"
 alias rtl="ros2 topic list"
 alias rnl="ros2 node list"
 
+alias stop="pkill ruby"
+
 export PATH="$PATH:/opt/nvim/"
