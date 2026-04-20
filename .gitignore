@@ -1,2 +1,4 @@
 .vscode/settings.json
 .system_type
+.nvim-docker
+.ssh
