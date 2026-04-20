@@ -9,7 +9,7 @@ PKG_PATH="$(dirname ${SCRIPT_NAME})"
 SYSTEM_FILE="${PKG_PATH}/.system_type"
 USAGE="$B ${COMMANDS}"
 
-export ROS_PROJECT_PATH="${HOME}/my_ros2_docker_workspace"
+export ROS_PROJECT_PATH="${PKG_PATH}/my_ros2_docker_workspace"
 
 check_system_type() {
     if [[ -f ${SYSTEM_FILE} ]]; then
