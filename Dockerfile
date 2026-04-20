@@ -44,7 +44,8 @@ RUN if [ -f "/usr/local/bin/starship" ]; then \
 
 COPY ./source/ros2-docker-configs.sh ${HOME_DIR}/.diamond/ros2-docker-configs.sh
 COPY ./source/bash-aliases ${HOME_DIR}/.diamond/bash-aliases
-COPY ./source/.ssh ${HOME_DIR}/.ssh
+COPY ./.ssh ${HOME_DIR}/.ssh
+RUN sudo chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${HOME_DIR}/.ssh
 RUN echo "source ~/.diamond/ros2-docker-configs.sh" >> ${HOME_DIR}/.bashrc
 
 RUN sudo chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${HOME_DIR}/.diamond
