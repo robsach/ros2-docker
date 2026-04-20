@@ -3,11 +3,10 @@ FROM tomphoward/ros2waffle:${ROS_VERSION}
 
 ARG ROS_VERSION
 ENV DEBIAN_FRONTEND=noninteractive
-
 ENV DEFAULT_USER=student
 
 ENV QT_X11_NO_MITSHM=1
-ENV EDITOR=nano
+ENV EDITOR=vim
 
 RUN apt-get update && apt-get install -y \
     xorg-dev \
@@ -20,6 +19,14 @@ RUN apt-get update && apt-get install -y \
 
 # Try to install starship, but don't fail if it doesn't work
 RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes || true
+
+# Install neovim
+RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+RUN chmod u+x nvim-linux-x86_64.appimage
+# Expose neovim globally
+RUN mkdir -p /opt/nvim
+RUN mv nvim-linux-x86_64.appimage /opt/nvim/nvim
+RUN sudo chown -R ${DEFAULT_USER}:${DEFAULT_USER} /opt/nvim/
 
 USER ${DEFAULT_USER}
 ARG HOME_DIR=/home/${DEFAULT_USER}
@@ -37,6 +44,7 @@ RUN if [ -f "/usr/local/bin/starship" ]; then \
 
 COPY ./source/ros2-docker-configs.sh ${HOME_DIR}/.diamond/ros2-docker-configs.sh
 COPY ./source/bash-aliases ${HOME_DIR}/.diamond/bash-aliases
+COPY ./source/.ssh ${HOME_DIR}/.ssh
 RUN echo "source ~/.diamond/ros2-docker-configs.sh" >> ${HOME_DIR}/.bashrc
 
 RUN sudo chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${HOME_DIR}/.diamond

@@ -8,6 +8,10 @@ services:
         source: ${ROS_PROJECT_PATH}
         target: /home/student/ros2_ws/src
       - ros2_workspace:/home/student/ros2_ws
+      - /home/robin/.config/nvim:/home/student/.config/nvim:ro
+      - /home/robin/.local/share/nvim:/home/student/.local/share/nvim:ro
+      - ./.nvim-docker/share:/home/student/.local/share/nvim:rw
+      - ./.nvim-docker/state:/home/student/.local/state/nvim:rw
     environment:
       - DISPLAY=${DISPLAY}
     # network_mode: host
